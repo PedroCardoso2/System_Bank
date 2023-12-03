@@ -37,4 +37,13 @@ public class EmpresaPequena extends Empresa {
     public void setFaturamento(Double faturamento) {
         this.faturamento = faturamento;
     }
+
+    @Override
+    public String toString() {
+        return "EmpresaPequena{" +
+                "numeroIdentificador=" + numeroIdentificador +
+                ", cnpj=" + cnpj +
+                ", faturamento=" + faturamento +
+                '}';
+    }
 }

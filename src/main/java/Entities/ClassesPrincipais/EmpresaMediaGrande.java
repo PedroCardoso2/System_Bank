@@ -48,4 +48,14 @@ public class EmpresaMediaGrande extends Empresa {
     public void setQuantidadeSocio(Integer quantidadeSocio) {
         this.quantidadeSocio = quantidadeSocio;
     }
+
+    @Override
+    public String toString() {
+        return "EmpresaMediaGrande{" +
+                "numeroIdentificador=" + numeroIdentificador +
+                ", cnpj=" + cnpj +
+                ", Faturamento=" + Faturamento +
+                ", quantidadeSocio=" + quantidadeSocio +
+                '}';
+    }
 }
