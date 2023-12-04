@@ -5,22 +5,24 @@ import Entities.Abstract.Banco;
 import java.io.*;
 
 public class FileWriters  {
-    public static void leia(Banco msg){
+    public static void escreva(Banco msg){
         String arquivo = "C:\\Users\\clice\\OneDrive\\Documentos\\POO.txt";
 
-        FileReader fl;
+        FileWriter fl;
         {
-            try (BufferedReader bf = new BufferedReader(new FileReader(arquivo))){
-                String line;
-                int num = 0;
+            try(BufferedWriter bf = new BufferedWriter(new FileWriter(arquivo))){
+                bf.write(msg.toString() );
+                bf.newLine();
+                bf.write("-----LISTA BANCÁRIA-----");
 
-                while((line = bf.readLine()) != null){
-                    System.out.println(msg.toString() + "Conta bancária " + num);
-                    num ++;
-                }
+                bf.close();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+
+
     }
+
 }
