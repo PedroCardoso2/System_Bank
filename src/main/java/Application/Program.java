@@ -3,12 +3,16 @@ package Application;
 
 import Entities.Abstract.Cliente;
 import Entities.Abstract.Empresa;
+import Entities.ClassesPrincipais.ClientePF;
+import Entities.ClassesPrincipais.ClientePJ;
 import Entities.ClassesPrincipais.EmpresaMediaGrande;
 import Entities.ClassesPrincipais.EmpresaPequena;
 import Entities.Exceptions.ContException;
 
 import javax.xml.crypto.Data;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +43,7 @@ public class Program {
             if(chose.equals("empresarial")){
                 try {abrirContaEmpresa();} catch (ContException e) {throw new RuntimeException(e);}
             } else if (chose.equals("cliente")) {
-
+                try {abrirContaCliente();} catch (ContException e) {throw new RuntimeException(e);}
             }else {
                 System.out.println("Informe novamente os valores !");
             }
@@ -95,20 +99,72 @@ public class Program {
         }
     }
 
-    public static void abrirContaCliente(){
-        String choseCont, endereco, nome, naturalidade;
+    public static void abrirContaCliente() throws ContException{
+        String choseCont, endereco, nome, naturalidade,dataNascimento;
+
 
 
 
         System.out.println("Você é PESSOA FÍSICA/ PESSOA JURÍDICA");
         System.out.println("Escreva PJ ou PF");
         choseCont = sc.next().toLowerCase();
+
+
+
         if(choseCont.equals("pf")){
-            System.out.println("");
+            Date date = null;
+            System.out.println("Informe seu Nome: ");
+            nome = sc.next();
+
+            System.out.println("Informe seu Data de Nascimento: ");
+            dataNascimento = sc.next();
+
+            try{
+                SimpleDateFormat st = new SimpleDateFormat("dd/MM/yyyy");
+                date = st.parse(dataNascimento);
+            }catch (ParseException e){
+                System.out.println("Data inválida!");
+            }
+
+            System.out.println("Informe seu Naturalidade: ");
+            naturalidade = sc.next();
+
+
+            System.out.println("Informe seu Endereço: ");
+            endereco = sc.next();
+
+            System.out.println("Informe seu cnpj: ");
+            Long cnpj = sc.nextLong();
+
+            ClientePJ cpj = new ClientePJ(nome,(Data) date,endereco,cnpj,naturalidade);
         }else if (choseCont.equals("pj")){
+            Date date = null;
+            System.out.println("Informe seu Nome: ");
+            nome = sc.next();
 
+            System.out.println("Informe seu Data de Nascimento: ");
+            dataNascimento = sc.next();
+
+            try{
+                SimpleDateFormat st = new SimpleDateFormat("dd/MM/yyyy");
+                date = st.parse(dataNascimento);
+            }catch (ParseException e){
+                System.out.println("Data inválida!");
+            }
+
+            System.out.println("Informe seu Naturalidade: ");
+            naturalidade = sc.next();
+
+
+            System.out.println("Informe seu Endereço: ");
+            endereco = sc.next();
+
+            System.out.println("Informe seu cpf: ");
+            Long cpf = sc.nextLong();
+
+            ClientePF cpj = new ClientePF(nome,(Data) date,endereco,cpf,naturalidade);
         }else {
-
+            System.out.println("Reinicie o aplicativo");
         }
     }
 }
