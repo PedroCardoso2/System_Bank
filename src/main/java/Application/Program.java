@@ -2,6 +2,7 @@ package Application;
 import Entities.Abstract.Cliente;
 import Entities.Abstract.Empresa;
 import Entities.Arquivos.FileWriters;
+import Entities.Bet;
 import Entities.ClassesPrincipais.ClientePF;
 import Entities.ClassesPrincipais.ClientePJ;
 import Entities.ClassesPrincipais.EmpresaMediaGrande;
@@ -19,11 +20,13 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Program implements Between {
+public class Program {
     public static Scanner sc = new Scanner(System.in);
 
     public static List<Empresa> listEmpresa = new ArrayList<>();
     public static List<Cliente> listCliente = new ArrayList<>();
+
+
     public static void main(String[] args) {
 
         String choseCont;
@@ -64,6 +67,12 @@ public class Program implements Between {
             }
 
             //ADICIONAR OPERAÇÕES DE SACAR E DEPOSITAR/ BETWEEN - RELATORIO
+        Bet b = new Bet();
+        System.out.println();
+        System.out.println("Contas criadas:");
+        System.out.println(b.between(listEmpresa, listCliente));
+
+
 
     }
 
@@ -114,6 +123,7 @@ public class Program implements Between {
 
             FileWriters fileWriters = new FileWriters();
             fileWriters.escreva(empresaMediaGrande);
+
         }else{
             throw new ContException("ERRO CONTA");
         }
@@ -158,7 +168,37 @@ public class Program implements Between {
             System.out.println("Conta Cliente criada com Sucesso !");
             FileWriters fileWriters = new FileWriters();
             fileWriters.escreva(clientePJ);
-        }else if (choseCont.equals("pj")){
+
+
+            System.out.println("Qual operação você deseja fazer ? (SACAR/DEPOSITAR)");
+            String choseOp = sc.next().toLowerCase();
+            if(choseOp.equals("sacar")){
+                System.out.println("Informe o valor para sacar: ");
+                Double sacar = sc.nextDouble();
+                clientePJ.sacar(sacar);
+            } else if (choseOp.equals("depositar")) {
+                System.out.println("Informe quanto você quer depositar: ");
+                Double depositar = sc.nextDouble();
+                clientePJ.depositar(depositar);
+            }else{
+                System.out.println("Digitação invalida");
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }else if (choseCont.equals("pf")){
             Date date = null;
             System.out.println("Informe seu Nome: ");
             nome = sc.next();
@@ -191,14 +231,36 @@ public class Program implements Between {
             System.out.println("Conta Cliente criada com Sucesso !");
             FileWriters fileWriters = new FileWriters();
             fileWriters.escreva(clientePF);
+
+            System.out.println("Qual operação você deseja fazer ? (SACAR/DEPOSITAR)");
+            String choseOp = sc.next().toLowerCase();
+            if(choseOp.equals("sacar")){
+                System.out.println("Informe o valor para sacar: ");
+                Double sacar = sc.nextDouble();
+                clientePF.sacar(sacar);
+            } else if (choseOp.equals("depositar")) {
+                System.out.println("Informe quanto você quer depositar: ");
+                Double depositar = sc.nextDouble();
+                clientePF.depositar(depositar);
+            }else{
+                System.out.println("Digitação invalida");
+            }
         }else {
             System.out.println("Reinicie o aplicativo");
         }
+
+
+        System.out.println("Deseja ver seu extrato ?");
+        String choseExtrato = sc.next();
+        if(choseExtrato.equals("sim")){
+            for(Cliente cltPJ : listCliente){
+                System.out.println(cltPJ);
+            }
+        }
+
+
     }
 
     // COLOCAR NO CÓDIGO
-    @Override
-    public int between(List<Empresa> empresaList, List<Cliente> clienteList) {
-        return 0;
-    }
+
 }
