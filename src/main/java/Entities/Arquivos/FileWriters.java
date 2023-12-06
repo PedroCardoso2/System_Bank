@@ -5,7 +5,7 @@ import Entities.Abstract.Banco;
 import java.io.*;
 
 public class FileWriters  {
-    public static void escreva(Banco msg){
+    public static <T> void escreva(T msg){
         String arquivo = "C:\\Users\\clice\\OneDrive\\Documentos\\POO.txt";
 
         FileWriter fl;

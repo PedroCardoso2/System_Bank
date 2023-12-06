@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class FileReaders {
 
-    public static void leia(Banco msg){
+    public static <T> void leia(T msg){
         String arquivo = "C:\\Users\\clice\\OneDrive\\Documentos\\POO.txt";
 
         FileReader fl;

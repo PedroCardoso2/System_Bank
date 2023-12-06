@@ -1,6 +1,7 @@
 package Application;
 import Entities.Abstract.Cliente;
 import Entities.Abstract.Empresa;
+import Entities.Arquivos.FileWriters;
 import Entities.ClassesPrincipais.ClientePF;
 import Entities.ClassesPrincipais.ClientePJ;
 import Entities.ClassesPrincipais.EmpresaMediaGrande;
@@ -9,6 +10,7 @@ import Entities.Exceptions.ContException;
 import Entities.Interface.Between;
 
 import javax.xml.crypto.Data;
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,8 +27,6 @@ public class Program implements Between {
     public static void main(String[] args) {
 
         String choseCont;
-        //Lista de Contas Bancárias
-
 
 
         System.out.println("Seja Bem-Vindo ao Banco Cardoso");
@@ -63,7 +63,7 @@ public class Program implements Between {
                 }
             }
 
-
+            //ADICIONAR OPERAÇÕES DE SACAR E DEPOSITAR/ BETWEEN - RELATORIO
 
     }
 
@@ -88,6 +88,9 @@ public class Program implements Between {
             EmpresaPequena empresaPequena = new EmpresaPequena(nomeEmpresa, funcionario, numberIdent, numberIdent, faturamento);
             listEmpresa.add(empresaPequena);
             System.out.println("Conta Empresarial Aberta !");
+
+            FileWriters fileWriters = new FileWriters();
+            fileWriters.escreva(empresaPequena);
         }else if (faturamento > 10.000){
 
             System.out.println("Digite o nome da Empresa: ");
@@ -108,6 +111,9 @@ public class Program implements Between {
             EmpresaMediaGrande empresaMediaGrande = new EmpresaMediaGrande(nomeEmpresa, funcionario, numberIdent, numberIdent, faturamento, socioQuant);
             listEmpresa.add(empresaMediaGrande);
             System.out.println("Conta Empresarial Aberta !");
+
+            FileWriters fileWriters = new FileWriters();
+            fileWriters.escreva(empresaMediaGrande);
         }else{
             throw new ContException("ERRO CONTA");
         }
@@ -148,6 +154,10 @@ public class Program implements Between {
             ClientePJ clientePJ = new ClientePJ(nome,(Data) date,endereco,cnpj,naturalidade, sl);
 
             listCliente.add(clientePJ);
+
+            System.out.println("Conta Cliente criada com Sucesso !");
+            FileWriters fileWriters = new FileWriters();
+            fileWriters.escreva(clientePJ);
         }else if (choseCont.equals("pj")){
             Date date = null;
             System.out.println("Informe seu Nome: ");
@@ -177,12 +187,16 @@ public class Program implements Between {
             Double sl = sc.nextDouble();
             ClientePF clientePF = new ClientePF(nome,(Data) date,endereco,cpf,naturalidade, sl);
             listCliente.add(clientePF);
+
+            System.out.println("Conta Cliente criada com Sucesso !");
+            FileWriters fileWriters = new FileWriters();
+            fileWriters.escreva(clientePF);
         }else {
             System.out.println("Reinicie o aplicativo");
         }
     }
 
-
+    // COLOCAR NO CÓDIGO
     @Override
     public int between(List<Empresa> empresaList, List<Cliente> clienteList) {
         return 0;
