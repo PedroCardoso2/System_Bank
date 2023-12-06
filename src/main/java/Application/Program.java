@@ -97,14 +97,14 @@ public class Program {
 
     public static void abrirContaCliente(){
         String choseCont, endereco, nome, naturalidade;
-      
+
 
 
         System.out.println("Você é PESSOA FÍSICA/ PESSOA JURÍDICA");
         System.out.println("Escreva PJ ou PF");
         choseCont = sc.next().toLowerCase();
         if(choseCont.equals("pf")){
-            System.out.println();
+            System.out.println("");
         }else if (choseCont.equals("pj")){
 
         }else {
