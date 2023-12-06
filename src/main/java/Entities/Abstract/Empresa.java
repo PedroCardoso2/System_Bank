@@ -1,6 +1,6 @@
 package Entities.Abstract;
 
-public abstract class Empresa {
+public abstract class Empresa extends Banco{
     public String Nome;
     public Integer funcionarios;
 

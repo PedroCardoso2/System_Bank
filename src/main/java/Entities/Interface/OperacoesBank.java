@@ -1,6 +1,6 @@
 package Entities.Interface;
 
 public interface OperacoesBank {
-    void depositar();
-    int sacar();
+    void depositar(double value);
+    void sacar(double value);
 }

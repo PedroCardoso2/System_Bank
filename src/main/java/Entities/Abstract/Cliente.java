@@ -2,7 +2,7 @@ package Entities.Abstract;
 
 import javax.xml.crypto.Data;
 
-public abstract class Cliente {
+public abstract class Cliente extends Banco{
     public String Nome;
     public Data dataNascimento;
     public String endereco;

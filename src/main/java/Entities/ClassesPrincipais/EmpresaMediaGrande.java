@@ -1,6 +1,7 @@
 package Entities.ClassesPrincipais;
 
 import Entities.Abstract.Empresa;
+import Entities.Interface.OperacoesBank;
 
 public class EmpresaMediaGrande extends Empresa {
     private Integer numeroIdentificador;
@@ -13,7 +14,7 @@ public class EmpresaMediaGrande extends Empresa {
         super(nome, funcionarios);
         this.numeroIdentificador = numeroIdentificador;
         this.cnpj = cnpj;
-        Faturamento = faturamento;
+        this.Faturamento = faturamento;
         this.quantidadeSocio = quantidadeSocio;
     }
 
@@ -58,4 +59,6 @@ public class EmpresaMediaGrande extends Empresa {
                 ", quantidadeSocio=" + quantidadeSocio +
                 '}';
     }
+
+
 }

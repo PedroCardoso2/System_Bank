@@ -1,6 +1,7 @@
 package Entities.ClassesPrincipais;
 
 import Entities.Abstract.Empresa;
+import Entities.Interface.OperacoesBank;
 
 public class EmpresaPequena extends Empresa {
     private Integer numeroIdentificador;
@@ -46,4 +47,6 @@ public class EmpresaPequena extends Empresa {
                 ", faturamento=" + faturamento +
                 '}';
     }
+
+
 }
